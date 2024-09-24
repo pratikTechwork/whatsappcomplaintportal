@@ -1,0 +1,107 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  text-align: center;
+}
+input,
+button,
+textarea {
+  outline: none;
+}
+input {
+}
+input::placeholder,
+textarea::placeholder {
+  color: #1a1a1a;
+}
+button {
+  outline: none;
+  border: none;
+  background: linear-gradient(
+    87.79deg,
+    #0064e6 -35.24%,
+    #0095d0 17.32%,
+    #00c0bd 69.71%,
+    #00dbb2 110.7%,
+    #00e5ae 134.86%
+  );
+  color: white;
+  margin: 20px 0;
+  max-width: 270px;
+  margin: 40px auto;
+  font-family: "poppins";
+  padding: 20px;
+}
+p {
+  margin: 10px;
+  font-size: 20px;
+}
+h2 {
+  background: linear-gradient(90deg, #006be2 0.15%, #00ddb1 100.15%);
+  font-family: "poppinsBold";
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+.border3px {
+  border: none;
+  border-bottom: 2px solid #00e5ae;
+  font-size: 18px;
+}
+.display_flex_col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  /* height: 100%; */
+}
+
+@font-face {
+  font-family: "monteserrat";
+  src: url("montserrat-thin.woff"), url("montserrat-thin.woff2");
+}
+@font-face {
+  font-family: "poppinsBold";
+  src: url("poppins-bold.woff2"), url("poppins-bold.woff");
+}
+@font-face {
+  font-family: "poppins";
+  src: url("poppins-medium.woff2"), url("poppins-medium.woff");
+}
+html {
+  font-family: "monteserrat";
+}
+body {
+  width: 100%;
+  height: 100vh;
+}
+.indexPage {
+  justify-content: space-evenly;
+  height: 100%;
+}
+.wrapper {
+  width: 100%;
+  height: 100%;
+  /* padding: 0 10px; */
+  justify-content: center;
+  background-image: url("bg.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+form {
+  width: 90%;
+  height: 100%;
+  max-height: 560px;
+  max-width: 400px;
+  margin-top: 40px;
+  border-radius: 2px;
+  padding: 0px 30px 0px 30px;
+  background: white;
+}

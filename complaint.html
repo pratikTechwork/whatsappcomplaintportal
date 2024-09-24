@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Submit Complaint</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="wrapper display_flex_col" style="position: relative">
+      <form id="myForm" class="display_flex_col">
+        <div
+          style="
+            align-self: stretch;
+            height: 69px;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 8px;
+            display: flex;
+            text-align: center;
+          "
+        >
+          <label
+            style="
+              align-self: stretch;
+              color: #ffffff;
+              font-size: 12px;
+              line-height: 19.2px;
+            "
+            >Name</label
+          >
+          <h2>Your Complaint Has Been Raised !!</h2>
+          <p
+            style="
+              font-weight: lighter;
+              font-family: 'poppins';
+              color: #747474;
+              margin-top: 2rem;
+            "
+          >
+            A techworks IT support person will contact you shortly.
+          </p>
+        </div>
+        <button
+          class="closebtn"
+          onclick="SubForm(event)"
+          style="
+            font-size: 20px;
+            align-self: stretch;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            display: inline-flex;
+            font-weight: 400;
+            line-height: 14.4px;
+            letter-spacing: 0.5px;
+          "
+        >
+          OK, I Understand
+        </button>
+      </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+      const supaBase = supabase.createClient(
+        "https://mgampbhmlnalxohuobpr.supabase.co",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1nYW1wYmhtbG5hbHhvaHVvYnByIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODEwMzA0MzYsImV4cCI6MTk5NjYwNjQzNn0.EKaavUFgm6Rs_4VAqacJB2HdeSaJDPkwtijx-3d1z3o"
+      );
+      // let link = 'https://www.customdash.techworksworld.com/src/complaintportal/complaint.html/?storename=rajsingh&name=rahul&number=485793893485&dhanushid=84948&branch=WDEL&deviceid=9034je83hfh44&type=backwall'
+      // console.log(location.href);
+      let  closebtn = document.querySelector('.closebtn')
+      closebtn.disabled = true
+      let link = location.href;
+      let obj = {};
+      // let urlParams = new URLSearchParams(link)
+      let linksplit = link.split("?")[1]?.split("&");
+
+      for (let index = 0; index < linksplit?.length; index++) {
+        let x = linksplit[index].split("=");
+        obj[x[0]] = x[1];
+      }
+
+      async function insertcomplaintdata() {
+        if (!obj["deviceid"]) return;
+
+        const { error } = await supaBase.from("tabs_issue").insert({
+          device_id: obj["deviceid"],
+          dhanush_id: obj["dhanushid"],
+          complain_raised_by: obj["name"],
+          branch: obj["branch"],
+          store_name: obj["storename"],
+          complaint_contact_number: obj["number"],
+          type: obj["type"],
+          timestamp: new Date().toISOString(),
+        });
+        if (!error) {
+          closebtn.disabled = false
+          console.log('done');
+        }
+        else {
+          closebtn.disabled = false
+          console.log(error);
+        }
+      }
+      insertcomplaintdata()
+      function SubForm(event) {
+        event.preventDefault();
+        window.close();
+      }
+    </script>
+  </body>
+</html>
